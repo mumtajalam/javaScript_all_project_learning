@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <div class="container">
+            <h1>ToDo-List</h1>
+            <div class="row">
+                <form>
+                    <div class="input-group">
+                        <input type="text" placeholder="todo-list" id="box" style="width: 30vw;"/>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="button" value="Add" onclick="add_item()" style="width: 10vw;"/>
+                    </div>
+                </form>
+            </div>
+            <div class="row">
+                <ul id="list_item">
+
+                </ul>
+            </div>
+        </div>
+        <script>
+            function add_item(){
+                let item = document.getElementById("box");
+                let list_item = document.getElementById("list_item");
+                if(item.value != ""){
+                    let make_li = document.createElement("li");// li
+                    make_li.appendChild(document.createTextNode(item.value));
+                    list_item.appendChild(make_li);
+                    item.value = "";
+                    make_li.onclick = function(){
+                        this.parentNode.removeChild(this);
+                    }
+                }
+                else{
+                    alert("please add a vlaue item");
+                }
+            }
+        </script>
+    </body>
+</html>

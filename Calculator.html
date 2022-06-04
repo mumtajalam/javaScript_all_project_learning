@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calculator</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .title{
+                border: 2px solid black;
+                width: 190px;
+                text-align: center;
+                color: green;
+                font-size: 20px;
+                margin-bottom: 10px;
+                margin: auto;
+            }
+            input[type="button"]{
+                background-color: gray;
+                color: whitesmoke;
+                border: solid black 2px;
+                width: 100%;
+                margin: auto;
+            }
+            input [type="text"]{
+                text-align: center;
+                color: black;
+            }
+            table{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            
+            <table border="0">
+                <thead>
+
+                </thead>
+                    <tbody>
+                        <div class="title">Super Calculator</div>
+                        <tr>
+                            <td   colspan="3"><input type="text" id="result"/></td>
+                            <td><input type="button" value="c" onclick="clr()"/></td>
+                        </tr>
+                        <tr>
+                            <td><input type="button" value="1" onclick="res('1')"/></td>
+                            <td><input type="button" value="2" onclick="res('2')"/></td>
+                            <td><input type="button" value="3" onclick="res('3')"/></td>
+                            <td><input type="button" value="/" onclick="res('/')"/></td>
+                        </tr>
+                        <tr>
+                            <td><input type="button" value="4" onclick="res('4')"/></td>
+                            <td><input type="button" value="5" onclick="res('5')"/></td>
+                            <td><input type="button" value="6" onclick="res('6')"/></td>
+                            <td><input type="button" value="-" onclick="res('-')"/></td>
+                        </tr>
+                        <tr>
+                            <td><input type="button" value="7" onclick="res('7')"/></td>
+                            <td><input type="button" value="8" onclick="res('8')"/></td>
+                            <td><input type="button" value="9" onclick="res('9')"/></td>
+                            <td><input type="button" value="+" onclick="res('+')"/></td>
+                        </tr>
+                        <tr>
+                            <td><input type="button" value="." onclick="res('.')"/></td>
+                            <td><input type="button" value="0" onclick="res('0')"/></td>
+                            <td><input type="button" value="=" onclick="solve('=')"/></td>
+                            <td><input type="button" value="*" onclick="res('*')"/></td>
+                        </tr>
+                    </tbody>
+            </table>
+        </div>
+        <script>
+            function res(val){
+                document.getElementById("result").value += val;
+            }
+            function solve(){
+                let x = document.getElementById("result").value;
+                let y = eval(x);
+                document.getElementById("result").value = y;
+            }
+            function clr(){
+                document.getElementById("result").value = ""; 
+            }
+        </script>
+
+    </body>
+</html>
