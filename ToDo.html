@@ -4,42 +4,80 @@
 
     </head>
     <body>
-        <div class="container">
-            <h1>ToDo-List</h1>
-            <div class="row">
-                <form>
-                    <div class="input-group">
-                        <input type="text" placeholder="todo-list" id="box" style="width: 30vw;"/>
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <input type="button" value="Add" onclick="add_item()" style="width: 10vw;"/>
-                    </div>
-                </form>
+        <header>My Todo list</header>
+        <form>
+            <div>
+                <input type="text" class="todo-input">
+                <button type="submit" class="todo-button">ADD</button>
             </div>
-            <div class="row">
-                <ul id="list_item">
-
-                </ul>
-            </div>
+        </form>
+    
+        <div class="todo-container">
+            <ul class="todo-list">
+                
+            </ul>
         </div>
         <script>
-            function add_item(){
-                let item = document.getElementById("box");
-                let list_item = document.getElementById("list_item");
-                if(item.value != ""){
-                    let make_li = document.createElement("li");// li
-                    make_li.appendChild(document.createTextNode(item.value));
-                    list_item.appendChild(make_li);
-                    item.value = "";
-                    make_li.onclick = function(){
-                        this.parentNode.removeChild(this);
-                    }
+            const input = document.querySelector('.todo-input');
+            const btn = document.querySelector('.todo-button');
+            const ul = document.querySelector('.todo-list');
+            btn.addEventListener('click', (e)=>{
+                e.preventDefault();
+                let li = document.createElement('li');
+                li.classList.add('todo-item');
+                let inval = input.value;
+                let delBtn = document.createElement('button');
+                delBtn.classList.add('todo-btn');
+                delBtn.innerHTML = "delete";
+                if(inval != ''){
+                    li.innerHTML = inval;
+                    li.appendChild(delBtn);
+                    ul.appendChild(li);
+                    input.value = " ";
                 }
-                else{
-                    alert("please add a vlaue item");
-                }
-            }
+                delBtn.addEventListener('click', ()=>{
+                ul.removeChild(li);
+            })
+            })
+            
         </script>
     </body>
 </html>
+<!-- const btn= document.querySelector('.todo-button');
+            const input= document.querySelector('.todo-input');
+            const ul=document.querySelector(".todo-list");
+            btn.addEventListener('click',AddToDo);
+            function AddToDo(event){
+                event.preventDefault();
+                let li= document.createElement('li');
+                li.classList.add('todo-item');
+                let inval=input.value;
+                let delBtn=document.createElement('button');
+                delBtn.classList.add('trash-btn');
+                delBtn.innerHTML="Delete";
+                if(inval!=''){
+                    li.innerHTML= inval;
+                    li.appendChild(delBtn);
+                    ul.appendChild(li);
+                    input.value="";
+                }
+                delBtn.addEventListener('click',()=>{
+                    ul.removeChild(li);
+                }) 
+            }               -->
+
+
+<!-- let item = document.getElementById("todo-input");
+    let list_item = document.getElementById("list_item");
+    if(item.value != ""){
+        let make_li = document.createElement("li");// li
+        make_li.appendChild(document.createTextNode(item.value));
+        list_item.appendChild(make_li);
+        item.value = "";
+        make_li.onclick = function(){
+            this.parentNode.removeChild(this);
+        }
+    }
+    else{
+        alert("please add a vlaue item");
+        } -->

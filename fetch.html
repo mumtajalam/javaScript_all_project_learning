@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fech Api</title>
+    <style>
+        .avatar_img {
+            height: 100px;
+            width: 100px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Photo</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody id="item_table"></tbody>
+        </table>
+    </div>
+    <script>
+        fetch("https://reqres.in/api/users")
+            .then(data => data.json())
+            .then(response =>
+                // console.log(response));
+                render(response)
+            );
+        function render(response) {
+            response.data.map(user => {
+                // var elem = document.createElement('div');
+                // elem.innerHTML = user.email;
+                // document.getElementById('root').appendChild(elem);
+                var img_div = document.createElement("div");
+                var img = document.createElement("img");
+                img.setAttribute("src", user.avatar);
+                img.classList.add("avatar_img");
+                img_div.appendChild(img);
+                var tr = document.createElement("tr");
+                var td1 = document.createElement("td");
+                td1.innerHTML = user.id;
+                tr.appendChild(td1);
+                var td5 = document.createElement("td");
+                td5.appendChild(img_div);
+                tr.appendChild(td5);
+                var td2 = document.createElement("td");
+                td2.innerHTML = user.first_name;
+                tr.appendChild(td2);
+                var td3 = document.createElement("td");
+                td3.innerHTML = user.last_name;
+                tr.appendChild(td3);
+                var td4 = document.createElement("td");
+                td4.innerHTML = user.email;
+                tr.appendChild(td4);
+                document.getElementById("item_table").appendChild(tr);
+            });
+        }
+    </script>
+</body>
+
+</html>
